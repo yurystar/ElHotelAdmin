@@ -38,7 +38,7 @@ public class Main {
 //        guestDaoStorage.saveGuest(guest1);
 
 //        adminController.createNewRoom(4, RoomType.STARS_3, 2, 3500);
-        roomDaoStorage.getAllRooms().forEach(System.out::println);
+//        roomDaoStorage.getAllRooms().forEach(System.out::println);
 //        roomServiceMain.getHotelRoomsSortedByRoomPlaces().forEach(System.out::println);
 
 //        Room room1 = new Room();
