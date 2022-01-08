@@ -9,27 +9,20 @@ public class BookingOrder {
     private LocalDate orderCreateDate;
     private LocalDate orderCheckInDate;
     private LocalDate orderCheckOutDate;
-    private Room orderedRoom;
-    private List<AdditionalService> orderedAdServ;
-    private List<Guest> orderedGuests;
+    private Integer orderedRoomNum;
     private OrderStatus orderStatus;
 
-    public BookingOrder(Integer orderID, LocalDate orderCheckInDate,
-                        LocalDate orderCheckOutDate, Room orderedHotelRoom,
-                        List<AdditionalService> orderedAdditionalServices, List<Guest> orderHotelGuests,
-                        OrderStatus orderStatus) {
-        this.orderID = orderID;
-        this.orderCreateDate = LocalDate.now();
-        this.orderCheckInDate = orderCheckInDate;
-        this.orderCheckOutDate = orderCheckOutDate;
-        this.orderedRoom = orderedHotelRoom;
-        this.orderedAdServ = orderedAdditionalServices;
-        this.orderedGuests = orderHotelGuests;
-        this.orderStatus = orderStatus;
+    public BookingOrder() {
     }
 
-    public BookingOrder(List<AdditionalService> orderedAdditionalServices) {
-        this.orderedAdServ = orderedAdditionalServices;
+    public BookingOrder(Integer orderID, LocalDate orderCreateDate, LocalDate orderCheckInDate,
+                        LocalDate orderCheckOutDate, Integer orderedRoomNum, OrderStatus orderStatus) {
+        this.orderID = orderID;
+        this.orderCreateDate = orderCreateDate;
+        this.orderCheckInDate = orderCheckInDate;
+        this.orderCheckOutDate = orderCheckOutDate;
+        this.orderedRoomNum = orderedRoomNum;
+        this.orderStatus = orderStatus;
     }
 
     public Integer getOrderID() {
@@ -64,28 +57,12 @@ public class BookingOrder {
         this.orderCheckOutDate = orderCheckOutDate;
     }
 
-    public Room getOrderedRoom() {
-        return orderedRoom;
+    public Integer getOrderedRoomNum() {
+        return orderedRoomNum;
     }
 
-    public void setOrderedRoom(Room orderedRoom) {
-        this.orderedRoom = orderedRoom;
-    }
-
-    public List<AdditionalService> getOrderedAdServ() {
-        return orderedAdServ;
-    }
-
-    public void setOrderedAdServ(List<AdditionalService> orderedAdServ) {
-        this.orderedAdServ = orderedAdServ;
-    }
-
-    public List<Guest> getOrderedGuests() {
-        return orderedGuests;
-    }
-
-    public void setOrderedGuests(List<Guest> orderedGuests) {
-        this.orderedGuests = orderedGuests;
+    public void setOrderedRoomNum(Integer orderedRoomNum) {
+        this.orderedRoomNum = orderedRoomNum;
     }
 
     public OrderStatus getOrderStatus() {
@@ -100,13 +77,13 @@ public class BookingOrder {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof BookingOrder)) return false;
-        BookingOrder order = (BookingOrder) o;
-        return getOrderID().equals(order.getOrderID()) && getOrderCreateDate().equals(order.getOrderCreateDate()) && getOrderCheckInDate().equals(order.getOrderCheckInDate()) && getOrderCheckOutDate().equals(order.getOrderCheckOutDate()) && getOrderedRoom().equals(order.getOrderedRoom()) && Objects.equals(getOrderedAdServ(), order.getOrderedAdServ()) && getOrderedGuests().equals(order.getOrderedGuests()) && getOrderStatus() == order.getOrderStatus();
+        BookingOrder that = (BookingOrder) o;
+        return getOrderID().equals(that.getOrderID()) && getOrderCreateDate().equals(that.getOrderCreateDate()) && getOrderCheckInDate().equals(that.getOrderCheckInDate()) && getOrderCheckOutDate().equals(that.getOrderCheckOutDate()) && getOrderedRoomNum().equals(that.getOrderedRoomNum()) && getOrderStatus() == that.getOrderStatus();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getOrderID(), getOrderCreateDate(), getOrderCheckInDate(), getOrderCheckOutDate(), getOrderedRoom(), getOrderedAdServ(), getOrderedGuests(), getOrderStatus());
+        return Objects.hash(getOrderID(), getOrderCreateDate(), getOrderCheckInDate(), getOrderCheckOutDate(), getOrderedRoomNum(), getOrderStatus());
     }
 
     @Override
@@ -116,9 +93,7 @@ public class BookingOrder {
                 ", orderCreateDate=" + orderCreateDate +
                 ", orderCheckInDate=" + orderCheckInDate +
                 ", orderCheckOutDate=" + orderCheckOutDate +
-                ", orderedRoom=" + orderedRoom +
-                ", orderedAdServ=" + orderedAdServ +
-                ", orderedGuests=" + orderedGuests +
+                ", orderedRoomNum=" + orderedRoomNum +
                 ", orderStatus=" + orderStatus +
                 '}';
     }
