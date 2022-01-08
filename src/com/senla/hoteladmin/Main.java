@@ -33,9 +33,9 @@ public class Main {
 
         AdminController adminController = new AdminController(guestDaoStorage, roomDaoStorage);
 
-        Guest guest1 = new Guest
-                (1, 254554, "Ivan", "Ivanov", 1);
-        guestDaoStorage.saveGuest(guest1);
+//        Guest guest1 = new Guest
+//                (1, 254554, "Ivan", "Ivanov", 1);
+//        guestDaoStorage.saveGuest(guest1);
 
 //        adminController.createNewRoom(4, RoomType.STARS_3, 2, 3500);
         roomDaoStorage.getAllRooms().forEach(System.out::println);
