@@ -30,14 +30,14 @@ public class GuestDaoImpl implements IGuestRepo {
             preparedStatement.setInt(1, guestID);
 
             ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                guest.setGuestID(resultSet.getInt("guestID"));
+                guest.setGuestPassport(resultSet.getInt("guestPassport"));
+                guest.setGuestName(resultSet.getString("guestName"));
+                guest.setGuestSurname(resultSet.getString("guestSurname"));
+                guest.setOrderID(resultSet.getInt("orderID"));
+            }
 
-            guest.setGuestID(resultSet.getInt("guestID"));
-            guest.setGuestPassport(resultSet.getInt("guestPassport"));
-            guest.setGuestName(resultSet.getString("guestName"));
-            guest.setGuestSurname(resultSet.getString("guestSurname"));
-            guest.setOrderID(resultSet.getInt("orderID"));
-
-            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -46,7 +46,6 @@ public class GuestDaoImpl implements IGuestRepo {
 
     @Override
     public List<Guest> getAllGuests() throws SQLException {
-//        Connection connection = dbConnect.getConnection();
         List<Guest> guests = new ArrayList<>();
 
         String sql = "SELECT guestID, guestPassport, guestName, guestSurname, orderID FROM Guest";
@@ -69,27 +68,21 @@ public class GuestDaoImpl implements IGuestRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        finally {
-//            if (connection != null) {
-//                connection.close();
-//            }
-//        }
         return guests;
     }
 
     @Override
     public void saveGuest(Guest guest) throws SQLException {
-        String sql = "INSERT INTO Guest (guestID, guestPassport, guestName, guestSurname, orderID) " +
-                "VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Guest (guestPassport, guestName, guestSurname, orderID) " +
+                "VALUES(?, ?, ?, ?)";
 
         try (Connection connection = dbConnect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-            preparedStatement.setInt(1, guest.getGuestID());
-            preparedStatement.setInt(2, guest.getGuestPassport());
-            preparedStatement.setString(3, guest.getGuestName());
-            preparedStatement.setString(4, guest.getGuestSurname());
-            preparedStatement.setInt(5, guest.getOrderID());
+            preparedStatement.setInt(1, guest.getGuestPassport());
+            preparedStatement.setString(2, guest.getGuestName());
+            preparedStatement.setString(3, guest.getGuestSurname());
+            preparedStatement.setInt(4, guest.getOrderID());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

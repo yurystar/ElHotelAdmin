@@ -1,7 +1,6 @@
 package com.senla.hoteladmin.entity;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 public class BookingOrder {
@@ -9,19 +8,28 @@ public class BookingOrder {
     private LocalDate orderCreateDate;
     private LocalDate orderCheckInDate;
     private LocalDate orderCheckOutDate;
-    private Integer orderedRoomNum;
+    private Integer orderedRoom;
     private OrderStatus orderStatus;
 
     public BookingOrder() {
     }
 
-    public BookingOrder(Integer orderID, LocalDate orderCreateDate, LocalDate orderCheckInDate,
+    public BookingOrder(LocalDate orderCreateDate, LocalDate orderCheckInDate,
                         LocalDate orderCheckOutDate, Integer orderedRoomNum, OrderStatus orderStatus) {
+        this.orderCreateDate = orderCreateDate;
+        this.orderCheckInDate = orderCheckInDate;
+        this.orderCheckOutDate = orderCheckOutDate;
+        this.orderedRoom = orderedRoomNum;
+        this.orderStatus = orderStatus;
+    }
+
+    public BookingOrder(Integer orderID, LocalDate orderCreateDate, LocalDate orderCheckInDate,
+                        LocalDate orderCheckOutDate, Integer orderedRoom, OrderStatus orderStatus) {
         this.orderID = orderID;
         this.orderCreateDate = orderCreateDate;
         this.orderCheckInDate = orderCheckInDate;
         this.orderCheckOutDate = orderCheckOutDate;
-        this.orderedRoomNum = orderedRoomNum;
+        this.orderedRoom = orderedRoom;
         this.orderStatus = orderStatus;
     }
 
@@ -57,12 +65,12 @@ public class BookingOrder {
         this.orderCheckOutDate = orderCheckOutDate;
     }
 
-    public Integer getOrderedRoomNum() {
-        return orderedRoomNum;
+    public Integer getOrderedRoom() {
+        return orderedRoom;
     }
 
-    public void setOrderedRoomNum(Integer orderedRoomNum) {
-        this.orderedRoomNum = orderedRoomNum;
+    public void setOrderedRoom(Integer orderedRoom) {
+        this.orderedRoom = orderedRoom;
     }
 
     public OrderStatus getOrderStatus() {
@@ -78,12 +86,12 @@ public class BookingOrder {
         if (this == o) return true;
         if (!(o instanceof BookingOrder)) return false;
         BookingOrder that = (BookingOrder) o;
-        return getOrderID().equals(that.getOrderID()) && getOrderCreateDate().equals(that.getOrderCreateDate()) && getOrderCheckInDate().equals(that.getOrderCheckInDate()) && getOrderCheckOutDate().equals(that.getOrderCheckOutDate()) && getOrderedRoomNum().equals(that.getOrderedRoomNum()) && getOrderStatus() == that.getOrderStatus();
+        return getOrderID().equals(that.getOrderID()) && getOrderCreateDate().equals(that.getOrderCreateDate()) && getOrderCheckInDate().equals(that.getOrderCheckInDate()) && getOrderCheckOutDate().equals(that.getOrderCheckOutDate()) && getOrderedRoom().equals(that.getOrderedRoom()) && getOrderStatus() == that.getOrderStatus();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getOrderID(), getOrderCreateDate(), getOrderCheckInDate(), getOrderCheckOutDate(), getOrderedRoomNum(), getOrderStatus());
+        return Objects.hash(getOrderID(), getOrderCreateDate(), getOrderCheckInDate(), getOrderCheckOutDate(), getOrderedRoom(), getOrderStatus());
     }
 
     @Override
@@ -93,7 +101,7 @@ public class BookingOrder {
                 ", orderCreateDate=" + orderCreateDate +
                 ", orderCheckInDate=" + orderCheckInDate +
                 ", orderCheckOutDate=" + orderCheckOutDate +
-                ", orderedRoomNum=" + orderedRoomNum +
+                ", orderedRoom=" + orderedRoom +
                 ", orderStatus=" + orderStatus +
                 '}';
     }

@@ -12,9 +12,8 @@ public class Guest {
     public Guest() {
     }
 
-    public Guest(Integer guestID, Integer guestPassport, String guestName, String guestSurname,
+    public Guest(Integer guestPassport, String guestName, String guestSurname,
                  Integer orderID) {
-        this.guestID = guestID;
         this.guestPassport = guestPassport;
         this.guestName = guestName;
         this.guestSurname = guestSurname;

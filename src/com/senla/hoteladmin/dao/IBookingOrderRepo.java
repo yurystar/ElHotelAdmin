@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IBookingOrderRepo {
-    Optional<BookingOrder> getBookingOrder(Integer orderID) throws SQLException;
+    BookingOrder getBookingOrder(Integer orderID) throws SQLException;
 
     List<BookingOrder> getAllBookingOrders() throws SQLException;
 

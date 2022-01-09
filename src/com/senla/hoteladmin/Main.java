@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class Main {
         IDbConnect dbConnect = new DbConnect();
 
 //        IAdditionalServiceRepo additionalServiceDaoStorage = new AdditionalServiceDaoImpl();
-//        IBookingOrderRepo bookingOrderDaoStorage = new BookingOrderDaoImpl();
+        IBookingOrderRepo bookingOrderDaoStorage = new BookingOrderDaoImpl(dbConnect);
         IGuestRepo guestDaoStorage = new GuestDaoImpl(dbConnect);
         IRoomRepo roomDaoStorage = new RoomDaoImpl(dbConnect);
 
@@ -32,13 +33,31 @@ public class Main {
         IRoomService roomServiceMain = new RoomService(dbConnect);
 
         AdminController adminController = new AdminController(guestDaoStorage, roomDaoStorage);
+        /* ---------------------------------------------------------------------------------*/
+        System.out.println(roomDaoStorage.getRoom(1));
+        roomDaoStorage.getAllRooms().forEach(System.out::println);
+
+        System.out.println(guestDaoStorage.getGuest(1));
+        guestDaoStorage.getAllGuests().forEach(System.out::println);
+//        BookingOrder bookingOrder2 = new BookingOrder(LocalDate.now(),
+//                LocalDate.of(2022, 01, 10),
+//                LocalDate.of(2022, 01, 17),
+//                2, OrderStatus.BOOKING);
+//        bookingOrderDaoStorage.updateBookingOrder(bookingOrder1);
+
+//        bookingOrderDaoStorage.saveBookingOrder(bookingOrder2);
+
+//        BookingOrder order = bookingOrderDaoStorage.getBookingOrder(1);
+//        System.out.println(order);
+//        bookingOrderDaoStorage.deleteBookingOrder(order);
 
 //        Guest guest1 = new Guest
-//                (1, 254554, "Ivan", "Ivanov", 1);
+//                (258345, "Sergey", "Sergov", 1);
 //        guestDaoStorage.saveGuest(guest1);
 
 //        adminController.createNewRoom(4, RoomType.STARS_3, 2, 3500);
-        roomDaoStorage.getAllRooms().forEach(System.out::println);
+//        System.out.println(roomDaoStorage.getRoom(1));
+//        System.out.println();
 //        roomServiceMain.getHotelRoomsSortedByRoomPlaces().forEach(System.out::println);
 
 //        Room room1 = new Room();
