@@ -34,11 +34,12 @@ public class Main {
 
         AdminController adminController = new AdminController(guestDaoStorage, roomDaoStorage);
         /* ---------------------------------------------------------------------------------*/
-        System.out.println(roomDaoStorage.getRoom(1));
-        roomDaoStorage.getAllRooms().forEach(System.out::println);
 
-        System.out.println(guestDaoStorage.getGuest(1));
-        guestDaoStorage.getAllGuests().forEach(System.out::println);
+//        bookingOrderDaoStorage.getAllBookingOrders().forEach(System.out::println);
+//        roomDaoStorage.getAllRooms().forEach(System.out::println);
+
+//        System.out.println(guestDaoStorage.getGuest(1));
+//        guestDaoStorage.getAllGuests().forEach(System.out::println);
 //        BookingOrder bookingOrder2 = new BookingOrder(LocalDate.now(),
 //                LocalDate.of(2022, 01, 10),
 //                LocalDate.of(2022, 01, 17),

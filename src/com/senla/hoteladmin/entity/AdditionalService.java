@@ -7,6 +7,9 @@ public class AdditionalService {
     private String serviceName;
     private Integer servicePrice;
 
+    public AdditionalService() {
+    }
+
     public AdditionalService(Integer serviceID, String serviceName, Integer servicePrice) {
         this.serviceID = serviceID;
         this.serviceName = serviceName;

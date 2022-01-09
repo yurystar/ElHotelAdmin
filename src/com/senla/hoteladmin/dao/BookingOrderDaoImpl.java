@@ -29,21 +29,22 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            bookingOrder.setOrderID(resultSet.getInt("orderID"));
-            bookingOrder.setOrderCreateDate(
-                    LocalDate.parse(resultSet.getString
-                            ("orderCreateDate"), dateTimeFormatter));
-            bookingOrder.setOrderCheckInDate(
-                    LocalDate.parse(resultSet.getString
-                            ("orderCheckInDate"), dateTimeFormatter));
-            bookingOrder.setOrderCheckOutDate(
-                    LocalDate.parse(resultSet.getString
-                            ("orderCheckOutDate"), dateTimeFormatter));
-            bookingOrder.setOrderedRoom(resultSet.getInt("orderedRoom"));
-            bookingOrder.setOrderStatus(
-                    OrderStatus.valueOf(resultSet.getString("orderStatus")));
+            if (resultSet.next()) {
+                bookingOrder.setOrderID(resultSet.getInt("orderID"));
+                bookingOrder.setOrderCreateDate(
+                        LocalDate.parse(resultSet.getString
+                                ("orderCreateDate"), dateTimeFormatter));
+                bookingOrder.setOrderCheckInDate(
+                        LocalDate.parse(resultSet.getString
+                                ("orderCheckInDate"), dateTimeFormatter));
+                bookingOrder.setOrderCheckOutDate(
+                        LocalDate.parse(resultSet.getString
+                                ("orderCheckOutDate"), dateTimeFormatter));
+                bookingOrder.setOrderedRoom(resultSet.getInt("orderedRoom"));
+                bookingOrder.setOrderStatus(
+                        OrderStatus.valueOf(resultSet.getString("orderStatus")));
+            }
 
-            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
