@@ -14,18 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomService implements IRoomService {
-IDbConnect dbConnect;
+    IDbConnect dbConnect;
 
     public RoomService(IDbConnect dbConnect) {
         this.dbConnect = dbConnect;
     }
-//    private final IRoomRepo roomRepo;
 
-
-//    public RoomService(IRoomRepo roomRepo) {
-//        this.roomRepo = roomRepo;
-//    }
-//
     @Override
     public List<Room> getHotelRoomsSortedByRoomPlaces() throws SQLException {
         Connection connection = dbConnect.getConnection();

@@ -2,13 +2,24 @@ package com.senla.hoteladmin.service;
 
 import com.senla.hoteladmin.dao.IAdditionalServiceRepo;
 import com.senla.hoteladmin.entity.AdditionalService;
+import com.senla.hoteladmin.util.DbConnect;
 
 import java.util.List;
 
-public class AdditionalServiceService /*implements IAdditionalServiceService*/ {
-    private IAdditionalServiceRepo additionalServiceRepo;
+public class AdditionalServiceService implements IAdditionalServiceService {
+    private DbConnect dbConnect;
 
-//    public AdditionalServiceService(IAdditionalServiceRepo additionalServiceRepo) {
+    public AdditionalServiceService(DbConnect dbConnect) {
+        this.dbConnect = dbConnect;
+    }
+
+    @Override
+    public void setNewAdditionalService(AdditionalService additionalService) {
+
+    }
+
+
+    //    public AdditionalServiceService(IAdditionalServiceRepo additionalServiceRepo) {
 //        this.additionalServiceRepo = additionalServiceRepo;
 //    }
 //

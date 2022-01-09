@@ -10,6 +10,11 @@ public class AdditionalService {
     public AdditionalService() {
     }
 
+    public AdditionalService(String serviceName, Integer servicePrice) {
+        this.serviceName = serviceName;
+        this.servicePrice = servicePrice;
+    }
+
     public AdditionalService(Integer serviceID, String serviceName, Integer servicePrice) {
         this.serviceID = serviceID;
         this.serviceName = serviceName;

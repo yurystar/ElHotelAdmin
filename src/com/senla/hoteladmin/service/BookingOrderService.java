@@ -3,13 +3,23 @@ package com.senla.hoteladmin.service;
 import com.senla.hoteladmin.dao.IBookingOrderRepo;
 import com.senla.hoteladmin.entity.AdditionalService;
 import com.senla.hoteladmin.entity.BookingOrder;
+import com.senla.hoteladmin.util.DbConnect;
 
 import java.util.List;
 
-public class BookingOrderService /*implements IBookingOrderService*/ {
-    private IBookingOrderRepo bookingOrderRepo;
+public class BookingOrderService  implements IBookingOrderService {
+    private DbConnect dbConnect;
 
-//    public BookingOrderService(IBookingOrderRepo bookingOrderRepo) {
+    public BookingOrderService(DbConnect dbConnect) {
+        this.dbConnect = dbConnect;
+    }
+
+    @Override
+    public void saveNewBookingOrder(BookingOrder order) {
+
+    }
+
+    //    public BookingOrderService(IBookingOrderRepo bookingOrderRepo) {
 //        this.bookingOrderRepo = bookingOrderRepo;
 //    }
 //

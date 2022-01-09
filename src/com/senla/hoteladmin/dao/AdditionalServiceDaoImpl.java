@@ -70,17 +70,51 @@ public class AdditionalServiceDaoImpl implements IAdditionalServiceRepo {
 
     @Override
     public void saveAdditionalService(AdditionalService service) throws SQLException {
+        String sql = "INSERT INTO AdditionalService (serviceName, servicePrice) VALUES(?, ?)";
 
+        try (Connection connection = dbConnect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, service.getServiceName());
+            preparedStatement.setInt(2, service.getServicePrice());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void updateAdditionalService(AdditionalService service) throws SQLException {
+        String sql = "UPDATE AdditionalService SET serviceName=?, servicePrice=? " +
+                "WHERE serviceID=?";
 
+        try (Connection connection = dbConnect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, service.getServiceName());
+            preparedStatement.setInt(2, service.getServicePrice());
+            preparedStatement.setInt(3, service.getServiceID());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteAdditionalService(AdditionalService service) throws SQLException {
+        String sql = "DELETE FROM AdditionalService WHERE serviceID=?";
 
+        try (Connection connection = dbConnect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, service.getServiceID());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
 //    private final List<AdditionalService> additionalServices = new ArrayList<>();

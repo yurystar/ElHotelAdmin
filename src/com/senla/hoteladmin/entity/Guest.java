@@ -20,6 +20,14 @@ public class Guest {
         this.orderID = orderID;
     }
 
+    public Guest(Integer guestID, Integer guestPassport, String guestName, String guestSurname, Integer orderID) {
+        this.guestID = guestID;
+        this.guestPassport = guestPassport;
+        this.guestName = guestName;
+        this.guestSurname = guestSurname;
+        this.orderID = orderID;
+    }
+
     public Integer getGuestID() {
         return guestID;
     }

@@ -2,13 +2,24 @@ package com.senla.hoteladmin.service;
 
 import com.senla.hoteladmin.dao.IGuestRepo;
 import com.senla.hoteladmin.entity.Guest;
+import com.senla.hoteladmin.util.DbConnect;
 
 import java.util.List;
 
-public class GuestService /*implements IGuestService*/ {
-    private IGuestRepo guestRepo;
+public class GuestService implements IGuestService {
+    private DbConnect dbConnect;
 
-//    public GuestService(IGuestRepo guestRepo) {
+    public GuestService(DbConnect dbConnect) {
+        this.dbConnect = dbConnect;
+    }
+
+    @Override
+    public Integer getNumberGuestsHotel() {
+        return null;
+    }
+
+
+    //    public GuestService(IGuestRepo guestRepo) {
 //        this.guestRepo = guestRepo;
 //    }
 //

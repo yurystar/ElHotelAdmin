@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         IDbConnect dbConnect = new DbConnect();
 
-//        IAdditionalServiceRepo additionalServiceDaoStorage = new AdditionalServiceDaoImpl();
+        IAdditionalServiceRepo additionalServiceDaoStorage = new AdditionalServiceDaoImpl(dbConnect);
         IBookingOrderRepo bookingOrderDaoStorage = new BookingOrderDaoImpl(dbConnect);
         IGuestRepo guestDaoStorage = new GuestDaoImpl(dbConnect);
         IRoomRepo roomDaoStorage = new RoomDaoImpl(dbConnect);
@@ -34,6 +34,25 @@ public class Main {
 
         AdminController adminController = new AdminController(guestDaoStorage, roomDaoStorage);
         /* ---------------------------------------------------------------------------------*/
+
+//        guestDaoStorage.saveGuest(new Guest(254554, "Ivan", "Ivanov",1));
+//        guestDaoStorage.saveGuest(new Guest(654123, "Petr", "Petrov",1));
+//        guestDaoStorage.saveGuest(new Guest(258345, "Sergey", "Sergov",1));
+//        guestDaoStorage.getAllGuests().forEach(System.out::println);
+
+//        additionalServiceDaoStorage.saveAdditionalService
+//                (new AdditionalService("Cleaning", 600));
+//        additionalServiceDaoStorage.saveAdditionalService
+//                (new AdditionalService("Food delivery", 400));
+//        additionalServiceDaoStorage.saveAdditionalService
+//                (new AdditionalService("Washing clothes", 100));
+//        additionalServiceDaoStorage.saveAdditionalService
+//                (new AdditionalService("Cable TV", 100));
+//        additionalServiceDaoStorage.saveAdditionalService
+//                (new AdditionalService("Safe", 100));
+//        additionalServiceDaoStorage.updateAdditionalService
+//                (new AdditionalService(2,"Animator",2300));
+//        additionalServiceDaoStorage.getAllAdditionalServices().forEach(System.out::println);
 
 //        bookingOrderDaoStorage.getAllBookingOrders().forEach(System.out::println);
 //        roomDaoStorage.getAllRooms().forEach(System.out::println);

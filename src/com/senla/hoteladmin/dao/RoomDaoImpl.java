@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class RoomDaoImpl implements IRoomRepo {
-    IDbConnect dbConnect;
+    private IDbConnect dbConnect;
 
     public RoomDaoImpl(IDbConnect dbConnect) {
         this.dbConnect = dbConnect;
