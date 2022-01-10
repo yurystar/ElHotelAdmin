@@ -4,13 +4,14 @@ import com.senla.hoteladmin.dao.IBookingOrderRepo;
 import com.senla.hoteladmin.entity.AdditionalService;
 import com.senla.hoteladmin.entity.BookingOrder;
 import com.senla.hoteladmin.util.DbConnect;
+import com.senla.hoteladmin.util.IDbConnect;
 
 import java.util.List;
 
 public class BookingOrderService  implements IBookingOrderService {
-    private DbConnect dbConnect;
+    private IDbConnect dbConnect;
 
-    public BookingOrderService(DbConnect dbConnect) {
+    public BookingOrderService(IDbConnect dbConnect) {
         this.dbConnect = dbConnect;
     }
 

@@ -5,11 +5,11 @@ import com.senla.hoteladmin.entity.AdditionalService;
 import java.util.List;
 
 public interface IAdditionalServiceService {
-//    List<AdditionalService> getListAdditionalServices();
+    List<AdditionalService> getListAdditionalServicesFromOrder(Integer orderID);
 //
 //    List<AdditionalService> getListAdditionalServicesSortedByPrice();
 //
-    void setNewAdditionalService(AdditionalService additionalService);
+    void setAdditionalServicesToOrder(Integer orderID, Integer adserviceID);
 //
 //    void deleteAdditionalService(AdditionalService additionalService);
 //

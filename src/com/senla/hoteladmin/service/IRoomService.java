@@ -6,18 +6,25 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IRoomService {
+    String createRoomSqlStr(String columnName);
+
+    List<Room> getSortedHotelRooms(String columnName) throws SQLException;
 
     List<Room> getHotelRoomsSortedByRoomPlaces() throws SQLException;
 
-//    List<Room> getHotelRoomsSortedByRoomPrice();
+    List<Room> getHotelRoomsSortedByRoomPrice() throws SQLException;
+
+    List<Room> getHotelRoomsSortedByRoomType() throws SQLException;
+
+    String createEmptyRoomSqlStr(String columnName);
+
+    List<Room> getEmptySortedHotelRooms(String columnName) throws SQLException;
 //
-//    List<Room> getHotelRoomsSortedByRoomType();
-//
-//    List<Room> getEmptyHotelRoomsSortedByRoomPlaces();
-//
-//    List<Room> getEmptyHotelRoomsSortedByRoomPrice();
-//
-//    List<Room> getEmptyHotelRoomsSortedByRoomType();
+    List<Room> getEmptyHotelRoomsSortedByRoomPlaces() throws SQLException;
+
+    List<Room> getEmptyHotelRoomsSortedByRoomPrice() throws SQLException;
+
+    List<Room> getEmptyHotelRoomsSortedByRoomType() throws SQLException;
 
 //    long getNumberEmptyHotelRooms();
 

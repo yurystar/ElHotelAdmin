@@ -3,13 +3,14 @@ package com.senla.hoteladmin.service;
 import com.senla.hoteladmin.dao.IGuestRepo;
 import com.senla.hoteladmin.entity.Guest;
 import com.senla.hoteladmin.util.DbConnect;
+import com.senla.hoteladmin.util.IDbConnect;
 
 import java.util.List;
 
 public class GuestService implements IGuestService {
-    private DbConnect dbConnect;
+    private IDbConnect dbConnect;
 
-    public GuestService(DbConnect dbConnect) {
+    public GuestService(IDbConnect dbConnect) {
         this.dbConnect = dbConnect;
     }
 

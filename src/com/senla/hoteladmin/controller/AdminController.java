@@ -1,21 +1,27 @@
 package com.senla.hoteladmin.controller;
 
+import com.senla.hoteladmin.dao.IAdditionalServiceRepo;
+import com.senla.hoteladmin.dao.IBookingOrderRepo;
 import com.senla.hoteladmin.dao.IGuestRepo;
 import com.senla.hoteladmin.dao.IRoomRepo;
 import com.senla.hoteladmin.entity.Room;
 import com.senla.hoteladmin.entity.RoomType;
+import com.senla.hoteladmin.service.IAdditionalServiceService;
 import com.senla.hoteladmin.service.IRoomService;
 
 import java.sql.SQLException;
 
 public class AdminController {
 
-//        private final IAdditionalServiceService additionalServiceService;
-//    private final IBookingOrderService bookingOrderService;
+        private final IAdditionalServiceRepo serviceRepo;
+    private final IBookingOrderRepo bookingOrderRepo;
     private final IGuestRepo guestRepo;
     private final IRoomRepo roomRepo;
 
-    public AdminController(IGuestRepo guestRepo, IRoomRepo roomRepo) {
+    public AdminController(IAdditionalServiceRepo serviceRepo, IBookingOrderRepo bookingOrderRepo,
+                           IGuestRepo guestRepo, IRoomRepo roomRepo) {
+        this.serviceRepo = serviceRepo;
+        this.bookingOrderRepo = bookingOrderRepo;
         this.guestRepo = guestRepo;
         this.roomRepo = roomRepo;
     }
