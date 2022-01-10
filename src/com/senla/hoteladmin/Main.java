@@ -29,25 +29,30 @@ public class Main {
         IAdditionalServiceService additionalServiceServiceMain =
                 new AdditionalServiceService(dbConnect);
 //        IBookingOrderService bookingOrderServiceMain = new BookingOrderService(bookingOrderDaoStorage);
-//        IGuestService guestServiceMain = new GuestService(guestDaoStorage);
+        IGuestService guestServiceMain = new GuestService(dbConnect);
         IRoomService roomServiceMain = new RoomService(dbConnect);
 
         AdminController adminController = new AdminController(additionalServiceDaoStorage,
                 bookingOrderDaoStorage, guestDaoStorage, roomDaoStorage);
         /* ---------------------------------------------------------------------------------*/
-        List<AdditionalService> services =
-                additionalServiceServiceMain.getListAdditionalServicesFromOrder(1);
-        System.out.println(services.size());
-        System.out.println(services);
-        roomServiceMain.getHotelRoomsSortedByRoomPlaces().forEach(System.out::println);
+
+
+//        List<AdditionalService> services =
+//                additionalServiceServiceMain.getListAdditionalServicesFromOrder(1);
+//        System.out.println(services.size());
+//        System.out.println(services);
+//        roomServiceMain.getHotelRoomsSortedByRoomPlaces().forEach(System.out::println);
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,1);
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,4);
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,2);
 
-//        guestDaoStorage.saveGuest(new Guest(254554, "Ivan", "Ivanov",1));
-//        guestDaoStorage.saveGuest(new Guest(654123, "Petr", "Petrov",1));
+        guestDaoStorage.saveGuest(new Guest(5461233, "Anna", "Annavna",2));
+        guestDaoStorage.saveGuest(new Guest(48516532, "Tana", "Tanavna",2));
+        guestServiceMain.showListGuestsAndTheirRoomsSortedBySurname();
 //        guestDaoStorage.saveGuest(new Guest(258345, "Sergey", "Sergov",1));
 //        guestDaoStorage.getAllGuests().forEach(System.out::println);
+//        new Guest(4, 5461233, "Anna", "Annavna"),
+//                        new Guest(5, 48516532, "Tana", "Tanavna")),
 
 //        additionalServiceDaoStorage.saveAdditionalService
 //                (new AdditionalService("Cleaning", 600));
