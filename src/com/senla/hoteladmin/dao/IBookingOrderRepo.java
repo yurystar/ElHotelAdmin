@@ -21,9 +21,7 @@ public interface IBookingOrderRepo {
 
 //    List<BookingOrder> getLastThreeGuestsRoom(Integer roomNumber);
 //
-//    List<BookingOrder> getListGuestsAndTheirRoomsSortedByRoom();
-//
-//    List<BookingOrder> getListGuestsAndTheirRoomsSortedByCheckOutDays();
+
 //
 //    List<AdditionalService> getListAdditionalServiceOfGuestSortedByPrice(Integer guestID);
 }

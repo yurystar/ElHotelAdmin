@@ -3,6 +3,7 @@ package com.senla.hoteladmin.service;
 import com.senla.hoteladmin.entity.Room;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IRoomService {
@@ -25,6 +26,12 @@ public interface IRoomService {
     List<Room> getEmptyHotelRoomsSortedByRoomPrice() throws SQLException;
 
     List<Room> getEmptyHotelRoomsSortedByRoomType() throws SQLException;
+
+//    String getEmptyRoomListOnDateSqlQuery(String sql);
+
+    List<Room> getBusyRoomListOnDate(LocalDate date) throws SQLException;
+//
+    List<Room> getEmptyRoomListOnDate(LocalDate date) throws SQLException;
 
 //    void setNewRoom(Room room);
 

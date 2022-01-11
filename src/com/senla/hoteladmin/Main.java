@@ -36,20 +36,23 @@ public class Main {
                 bookingOrderServiceMain, guestServiceMain, roomServiceMain);
         /* ---------------------------------------------------------------------------------*/
 
-        System.out.println(guestDaoStorage.getNumberGuestsHotel());
-//        roomServiceMain.getHotelRoomsSortedByRoomPlaces().forEach(System.out::println);
+
+//        roomServiceMain.getBusyRoomListOnDate
+//                (LocalDate.of(2022,01,17)).forEach(System.out::println);
+//        roomServiceMain.getEmptyRoomListOnDate
+//                (LocalDate.of(2022,01,17)).forEach(System.out::println);
+//        System.out.println(guestDaoStorage.getNumberGuestsHotel());
+        /*------------------------добавить доп сервисы в ордер---------------------------------*/
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,1);
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,4);
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,2);
 
-//        guestDaoStorage.saveGuest(new Guest(5461233, "Anna", "Annavna",2));
-//        guestDaoStorage.saveGuest(new Guest(48516532, "Tana", "Tanavna",2));
+//
 //        guestServiceMain.showListGuestsAndTheirRoomsSortedBySurname();
 //        guestDaoStorage.saveGuest(new Guest(258345, "Sergey", "Sergov",1));
 //        guestDaoStorage.getAllGuests().forEach(System.out::println);
-//        new Guest(4, 5461233, "Anna", "Annavna"),
-//                        new Guest(5, 48516532, "Tana", "Tanavna")),
-
+//
+        /*------------------------добавить доп сервисы---------------------------------*/
 //        additionalServiceDaoStorage.saveAdditionalService
 //                (new AdditionalService("Cleaning", 600));
 //        additionalServiceDaoStorage.saveAdditionalService
@@ -62,20 +65,30 @@ public class Main {
 //                (new AdditionalService("Safe", 100));
 //        additionalServiceDaoStorage.updateAdditionalService
 //                (new AdditionalService(2,"Animator",2300));
-//        additionalServiceDaoStorage.getAllAdditionalServices().forEach(System.out::println);
+
 
 //        bookingOrderDaoStorage.getAllBookingOrders().forEach(System.out::println);
 //        roomDaoStorage.getAllRooms().forEach(System.out::println);
 
 //        System.out.println(guestDaoStorage.getGuest(1));
 //        guestDaoStorage.getAllGuests().forEach(System.out::println);
+        /* -------------------------создание ордера------------------------------*/
 //        BookingOrder bookingOrder2 = new BookingOrder(LocalDate.now(),
-//                LocalDate.of(2022, 01, 10),
-//                LocalDate.of(2022, 01, 17),
-//                2, OrderStatus.BOOKING);
-//        bookingOrderDaoStorage.updateBookingOrder(bookingOrder1);
-
+//                LocalDate.of(2022, 01, 15),
+//                LocalDate.of(2022, 01, 20),
+//                3, OrderStatus.BOOKING);
 //        bookingOrderDaoStorage.saveBookingOrder(bookingOrder2);
+        /*------------------------добавить доп сервисы в ордер---------------------------------*/
+//        additionalServiceDaoStorage.setAdditionalServicesToOrder(3,2);
+//        additionalServiceDaoStorage.setAdditionalServicesToOrder(3,3);
+//        additionalServiceDaoStorage.setAdditionalServicesToOrder(3,5);
+    /*------------------------добавить в ордер гостей---------------------------------*/
+//        guestDaoStorage.saveGuest(new Guest(4535355, "Gala", "Galah",3));
+//        guestDaoStorage.saveGuest(new Guest(5465132, "Tana", "Opyt",3));
+//        guestDaoStorage.saveGuest(new Guest(2154888, "Gena", "Opiut",3));
+//        guestDaoStorage.saveGuest(new Guest(23215465, "Tana", "Klooit",3));
+        /*--------------------------------------------------------------------------*/
+//        bookingOrderDaoStorage.updateBookingOrder(bookingOrder1);
 
 //        BookingOrder order = bookingOrderDaoStorage.getBookingOrder(1);
 //        System.out.println(order);

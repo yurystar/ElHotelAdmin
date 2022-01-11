@@ -6,6 +6,8 @@ import com.senla.hoteladmin.entity.RoomStatus;
 import com.senla.hoteladmin.entity.RoomType;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +70,23 @@ public class RoomService implements IRoomService {
         return roomRepo.getAllRooms(createEmptyRoomSqlStr("roomType"));
     }
 
+    @Override
+    public List<Room> getBusyRoomListOnDate(LocalDate date) throws SQLException {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String searchDate = dateTimeFormatter.format(date);
+        return roomRepo.getAllRooms("select b.roomNumber, b.roomType, b.roomPlaces, b.roomPrice, b.roomStatus \n" +
+                "from BookingOrder as a left join Room as b on a.orderedRoom = b.roomNumber \n" +
+                "where DATE (a.orderCheckInDate) <= '" + searchDate +
+                "' and DATE (a.orderCheckOutDate) > '" + searchDate + "'");
+    }
+
+    @Override
+    public List<Room> getEmptyRoomListOnDate(LocalDate date) throws SQLException {
+        List<Room> EmptyHotelRoomsListOnDate = getHotelRoomsSortedByRoomNumber();
+        EmptyHotelRoomsListOnDate.removeAll(getBusyRoomListOnDate(date));
+        return EmptyHotelRoomsListOnDate;
+    }
+}
 
 //
 //    @Override
@@ -102,4 +121,4 @@ public class RoomService implements IRoomService {
 //    public Room showRoomDetails(Integer roomNumber) {
 //        return roomRepo.showRoomDetails(roomNumber);
 //    }
-}
+
