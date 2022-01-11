@@ -36,7 +36,7 @@ public class Main {
                 bookingOrderDaoStorage, guestDaoStorage, roomDaoStorage);
         /* ---------------------------------------------------------------------------------*/
 
-
+//        guestServiceMain.showListGuestsAndTheirRoomsSortedByCheckOutDate();
 //        List<AdditionalService> services =
 //                additionalServiceServiceMain.getListAdditionalServicesFromOrder(1);
 //        System.out.println(services.size());
@@ -46,9 +46,9 @@ public class Main {
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,4);
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,2);
 
-        guestDaoStorage.saveGuest(new Guest(5461233, "Anna", "Annavna",2));
-        guestDaoStorage.saveGuest(new Guest(48516532, "Tana", "Tanavna",2));
-        guestServiceMain.showListGuestsAndTheirRoomsSortedBySurname();
+//        guestDaoStorage.saveGuest(new Guest(5461233, "Anna", "Annavna",2));
+//        guestDaoStorage.saveGuest(new Guest(48516532, "Tana", "Tanavna",2));
+//        guestServiceMain.showListGuestsAndTheirRoomsSortedBySurname();
 //        guestDaoStorage.saveGuest(new Guest(258345, "Sergey", "Sergov",1));
 //        guestDaoStorage.getAllGuests().forEach(System.out::println);
 //        new Guest(4, 5461233, "Anna", "Annavna"),

@@ -46,6 +46,33 @@ public class GuestService implements IGuestService {
     }
 
     @Override
+    public void showListGuestsAndTheirRoomsSortedByCheckOutDate() {
+        String sql = "select Guest.guestID, Guest.guestName, Guest.guestSurname, BookingOrder.orderCheckOutDate, " +
+                "Room.roomNumber from Guest " +
+                "inner join BookingOrder on Guest.orderID = BookingOrder.orderID " +
+                "inner join Room on BookingOrder.orderedRoom = Room.roomNumber " +
+                "order by BookingOrder.orderCheckOutDate";
+
+        try (Connection connection = dbConnect.getConnection();
+             Statement statement = connection.createStatement()) {
+
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+
+                System.out.printf("%d ", resultSet.getInt("guestID"));
+                System.out.printf("Name - %s, ", resultSet.getString("guestName"));
+                System.out.printf("Surname - %s, ", resultSet.getString("guestSurname"));
+                System.out.printf("Date check-out - %s, ", resultSet.getString("orderCheckOutDate"));
+                System.out.printf("Room number - %s. \n", resultSet.getInt("roomNumber"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public Integer getNumberGuestsHotel() {
         return null;
     }
