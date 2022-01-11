@@ -18,5 +18,11 @@ public interface IGuestRepo {
 
     void deleteGuest(Guest guest) throws SQLException;
 
+    void showListGuestsAndTheirRoomsSortedBySurname();
+
+    void showListGuestsAndTheirRoomsSortedByCheckOutDate();
+
+    Integer getNumberGuestsHotel();
+
 //    Integer getNumberOfGuests();
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface IRoomService {
     String createRoomSqlStr(String columnName);
 
-    List<Room> getSortedHotelRooms(String columnName) throws SQLException;
+    List<Room> getHotelRoomsSortedByRoomNumber() throws SQLException;
 
     List<Room> getHotelRoomsSortedByRoomPlaces() throws SQLException;
 
@@ -18,15 +18,13 @@ public interface IRoomService {
 
     String createEmptyRoomSqlStr(String columnName);
 
-    List<Room> getEmptySortedHotelRooms(String columnName) throws SQLException;
+    List<Room> getEmptyHotelRoomsSortedByRoomNumber() throws SQLException;
 //
     List<Room> getEmptyHotelRoomsSortedByRoomPlaces() throws SQLException;
 
     List<Room> getEmptyHotelRoomsSortedByRoomPrice() throws SQLException;
 
     List<Room> getEmptyHotelRoomsSortedByRoomType() throws SQLException;
-
-//    long getNumberEmptyHotelRooms();
 
 //    void setNewRoom(Room room);
 

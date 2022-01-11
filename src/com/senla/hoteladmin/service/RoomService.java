@@ -1,19 +1,19 @@
 package com.senla.hoteladmin.service;
 
+import com.senla.hoteladmin.dao.IRoomRepo;
 import com.senla.hoteladmin.entity.Room;
 import com.senla.hoteladmin.entity.RoomStatus;
 import com.senla.hoteladmin.entity.RoomType;
-import com.senla.hoteladmin.util.IDbConnect;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RoomService implements IRoomService {
-    IDbConnect dbConnect;
+    private IRoomRepo roomRepo;
 
-    public RoomService(IDbConnect dbConnect) {
-        this.dbConnect = dbConnect;
+    public RoomService(IRoomRepo roomRepo) {
+        this.roomRepo = roomRepo;
     }
 
     @Override
@@ -23,45 +23,23 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public List<Room> getSortedHotelRooms(String columnName) throws SQLException {
-        List<Room> rooms = new ArrayList<>();
-
-        String sql = createRoomSqlStr(columnName);
-
-        try (Connection connection = dbConnect.getConnection();
-             Statement statement = connection.createStatement()) {
-
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            while (resultSet.next()) {
-                Room room = new Room();
-                room.setRoomNumber(resultSet.getInt("roomNumber"));
-                room.setRoomType(RoomType.valueOf(resultSet.getString("roomType")));
-                room.setRoomPlaces(resultSet.getInt("roomPlaces"));
-                room.setRoomPrice(resultSet.getInt("roomPrice"));
-                room.setRoomStatus(RoomStatus.valueOf(resultSet.getString("roomStatus")));
-
-                rooms.add(room);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rooms;
+    public List<Room> getHotelRoomsSortedByRoomNumber() throws SQLException {
+        return roomRepo.getAllRooms(createRoomSqlStr("roomNumber"));
     }
 
     @Override
     public List<Room> getHotelRoomsSortedByRoomPlaces() throws SQLException {
-        return getSortedHotelRooms("roomPlaces");
+        return roomRepo.getAllRooms(createRoomSqlStr("roomPlaces"));
     }
 
     @Override
     public List<Room> getHotelRoomsSortedByRoomPrice() throws SQLException {
-        return getSortedHotelRooms("roomPrice");
+        return roomRepo.getAllRooms(createRoomSqlStr("roomPrice"));
     }
 
     @Override
     public List<Room> getHotelRoomsSortedByRoomType() throws SQLException {
-        return getSortedHotelRooms("roomType");
+        return roomRepo.getAllRooms(createRoomSqlStr("roomType"));
     }
 
     @Override
@@ -71,51 +49,26 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public List<Room> getEmptySortedHotelRooms(String columnName) throws SQLException {
-        List<Room> rooms = new ArrayList<>();
-
-        String sql = createEmptyRoomSqlStr(columnName);
-
-        try (Connection connection = dbConnect.getConnection();
-             Statement statement = connection.createStatement()) {
-
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            while (resultSet.next()) {
-                Room room = new Room();
-                room.setRoomNumber(resultSet.getInt("roomNumber"));
-                room.setRoomType(RoomType.valueOf(resultSet.getString("roomType")));
-                room.setRoomPlaces(resultSet.getInt("roomPlaces"));
-                room.setRoomPrice(resultSet.getInt("roomPrice"));
-                room.setRoomStatus(RoomStatus.valueOf(resultSet.getString("roomStatus")));
-
-                rooms.add(room);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rooms;
+    public List<Room> getEmptyHotelRoomsSortedByRoomNumber() throws SQLException {
+        return roomRepo.getAllRooms(createEmptyRoomSqlStr("roomNumber"));
     }
 
     @Override
     public List<Room> getEmptyHotelRoomsSortedByRoomPlaces() throws SQLException {
-        return getEmptySortedHotelRooms("roomPlaces");
+        return roomRepo.getAllRooms(createEmptyRoomSqlStr("roomPlaces"));
     }
 
     @Override
     public List<Room> getEmptyHotelRoomsSortedByRoomPrice() throws SQLException {
-        return getEmptySortedHotelRooms("roomPrice");
+        return roomRepo.getAllRooms(createEmptyRoomSqlStr("roomPrice"));
     }
 
     @Override
     public List<Room> getEmptyHotelRoomsSortedByRoomType() throws SQLException {
-        return getEmptySortedHotelRooms("roomType");
+        return roomRepo.getAllRooms(createEmptyRoomSqlStr("roomType"));
     }
-//
-//    @Override
-//    public long getNumberEmptyHotelRooms() {
-//        return roomRepo.getNumberEmptyHotelRooms();
-//    }
+
+
 //
 //    @Override
 //    public void setNewRoom(Room room) {

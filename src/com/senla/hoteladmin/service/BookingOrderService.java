@@ -9,10 +9,10 @@ import com.senla.hoteladmin.util.IDbConnect;
 import java.util.List;
 
 public class BookingOrderService  implements IBookingOrderService {
-    private IDbConnect dbConnect;
+    private IBookingOrderRepo bookingOrderRepo;
 
-    public BookingOrderService(IDbConnect dbConnect) {
-        this.dbConnect = dbConnect;
+    public BookingOrderService(IBookingOrderRepo bookingOrderRepo) {
+        this.bookingOrderRepo = bookingOrderRepo;
     }
 
     @Override

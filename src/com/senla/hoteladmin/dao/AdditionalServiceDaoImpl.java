@@ -116,6 +116,52 @@ public class AdditionalServiceDaoImpl implements IAdditionalServiceRepo {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<AdditionalService> getListAdditionalServicesFromOrder(Integer orderID) {
+        List<AdditionalService> additionalServices = new ArrayList<>();
+
+        String sql = "select c.serviceID, c.serviceName, c.servicePrice from Order_adservice as a\n" +
+                "inner join AdditionalService as c on a.adserviceID = c.serviceID\n" +
+                "where a.orderID = ?";
+
+        try (Connection connection = dbConnect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, orderID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                AdditionalService service = new AdditionalService();
+
+                service.setServiceID(resultSet.getInt("serviceID"));
+                service.setServiceName(resultSet.getString("serviceName"));
+                service.setServicePrice(resultSet.getInt("servicePrice"));
+
+                additionalServices.add(service);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return additionalServices;
+    }
+
+    @Override
+    public void setAdditionalServicesToOrder(Integer orderID, Integer adserviceID) {
+        String sql = "INSERT INTO Order_adservice (orderID, adserviceID) VALUES(?, ?)";
+
+        try (Connection connection = dbConnect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, orderID);
+            preparedStatement.setInt(2, adserviceID);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 //    private final List<AdditionalService> additionalServices = new ArrayList<>();
 //

@@ -27,20 +27,16 @@ public class Main {
         IRoomRepo roomDaoStorage = new RoomDaoImpl(dbConnect);
 
         IAdditionalServiceService additionalServiceServiceMain =
-                new AdditionalServiceService(dbConnect);
-//        IBookingOrderService bookingOrderServiceMain = new BookingOrderService(bookingOrderDaoStorage);
-        IGuestService guestServiceMain = new GuestService(dbConnect);
-        IRoomService roomServiceMain = new RoomService(dbConnect);
+                new AdditionalServiceService(additionalServiceDaoStorage);
+        IBookingOrderService bookingOrderServiceMain = new BookingOrderService(bookingOrderDaoStorage);
+        IGuestService guestServiceMain = new GuestService(guestDaoStorage);
+        IRoomService roomServiceMain = new RoomService(roomDaoStorage);
 
-        AdminController adminController = new AdminController(additionalServiceDaoStorage,
-                bookingOrderDaoStorage, guestDaoStorage, roomDaoStorage);
+        AdminController adminController = new AdminController(additionalServiceServiceMain,
+                bookingOrderServiceMain, guestServiceMain, roomServiceMain);
         /* ---------------------------------------------------------------------------------*/
 
-//        guestServiceMain.showListGuestsAndTheirRoomsSortedByCheckOutDate();
-//        List<AdditionalService> services =
-//                additionalServiceServiceMain.getListAdditionalServicesFromOrder(1);
-//        System.out.println(services.size());
-//        System.out.println(services);
+        System.out.println(guestDaoStorage.getNumberGuestsHotel());
 //        roomServiceMain.getHotelRoomsSortedByRoomPlaces().forEach(System.out::println);
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,1);
 //        additionalServiceServiceMain.setAdditionalServicesToOrder(2,4);

@@ -18,5 +18,9 @@ public interface IAdditionalServiceRepo {
 
     void deleteAdditionalService(AdditionalService service) throws SQLException;
 
+    List<AdditionalService> getListAdditionalServicesFromOrder(Integer orderID);
+
+    void setAdditionalServicesToOrder(Integer orderID, Integer adserviceID);
+
 //    List<AdditionalService> getListAdditionalServicesSortedByPrice();
 }

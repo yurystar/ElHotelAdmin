@@ -7,23 +7,26 @@ import com.senla.hoteladmin.dao.IRoomRepo;
 import com.senla.hoteladmin.entity.Room;
 import com.senla.hoteladmin.entity.RoomType;
 import com.senla.hoteladmin.service.IAdditionalServiceService;
+import com.senla.hoteladmin.service.IBookingOrderService;
+import com.senla.hoteladmin.service.IGuestService;
 import com.senla.hoteladmin.service.IRoomService;
 
 import java.sql.SQLException;
 
 public class AdminController {
 
-        private final IAdditionalServiceRepo serviceRepo;
-    private final IBookingOrderRepo bookingOrderRepo;
-    private final IGuestRepo guestRepo;
-    private final IRoomRepo roomRepo;
+        private final IAdditionalServiceService additionalServiceService;
+    private final IBookingOrderService bookingOrderService;
+    private final IGuestService guestService;
+    private final IRoomService roomService;
 
-    public AdminController(IAdditionalServiceRepo serviceRepo, IBookingOrderRepo bookingOrderRepo,
-                           IGuestRepo guestRepo, IRoomRepo roomRepo) {
-        this.serviceRepo = serviceRepo;
-        this.bookingOrderRepo = bookingOrderRepo;
-        this.guestRepo = guestRepo;
-        this.roomRepo = roomRepo;
+    public AdminController(IAdditionalServiceService additionalServiceService,
+                           IBookingOrderService bookingOrderService,
+                           IGuestService guestService, IRoomService roomService) {
+        this.additionalServiceService = additionalServiceService;
+        this.bookingOrderService = bookingOrderService;
+        this.guestService = guestService;
+        this.roomService = roomService;
     }
 
     //
@@ -37,11 +40,11 @@ public class AdminController {
 //        this.roomService = roomService;
 //    }
 //
-    public void createNewRoom(Integer roomNumber, RoomType roomType, Integer roomPlaces,
-                              Integer roomPrice) throws SQLException {
-        Room room = new Room(roomNumber, roomType, roomPlaces, roomPrice);
-        roomRepo.saveRoom(room);
-    }
+//    public void createNewRoom(Integer roomNumber, RoomType roomType, Integer roomPlaces,
+//                              Integer roomPrice) throws SQLException {
+//        Room room = new Room(roomNumber, roomType, roomPlaces, roomPrice);
+//        roomRepo.saveRoom(room);
+//    }
 //
 //    public void deleteRoom(Integer roomNumber) {
 //        for (Room room : roomService.getRoomList()) {

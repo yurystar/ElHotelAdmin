@@ -45,11 +45,11 @@ public class RoomDaoImpl implements IRoomRepo {
     }
 
     @Override
-    public List<Room> getAllRooms() throws SQLException {
+    public List<Room> getAllRooms(String sql) throws SQLException {
         List<Room> rooms = new ArrayList<>();
-
-        String sql = "SELECT roomNumber, roomType, roomPlaces, roomPrice, roomStatus FROM Room";
-
+        if (sql == null) {
+            sql = "SELECT roomNumber, roomType, roomPlaces, roomPrice, roomStatus FROM Room";
+        }
         try (Connection connection = dbConnect.getConnection();
              Statement statement = connection.createStatement()) {
 
@@ -124,6 +124,27 @@ public class RoomDaoImpl implements IRoomRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Integer getNumberEmptyHotelRooms() throws SQLException {
+        String sql = "SELECT COUNT(roomNumber) as totalCount FROM Room where roomStatus = ?";
+
+        Integer count = null;
+        try (Connection connection = dbConnect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, "EMPTY");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                count = (resultSet.getInt("totalCount"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 }
 
