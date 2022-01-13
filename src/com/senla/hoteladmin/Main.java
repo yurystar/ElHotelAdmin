@@ -37,47 +37,17 @@ public class Main {
         /* ---------------------------------------------------------------------------------*/
 
 
-//        roomServiceMain.getBusyRoomListOnDate
-//                (LocalDate.of(2022,01,17)).forEach(System.out::println);
-//        roomServiceMain.getEmptyRoomListOnDate
-//                (LocalDate.of(2022,01,17)).forEach(System.out::println);
-//        System.out.println(guestDaoStorage.getNumberGuestsHotel());
-        /*------------------------добавить доп сервисы в ордер---------------------------------*/
-//        additionalServiceServiceMain.setAdditionalServicesToOrder(2,1);
-//        additionalServiceServiceMain.setAdditionalServicesToOrder(2,4);
-//        additionalServiceServiceMain.setAdditionalServicesToOrder(2,2);
 
-//
-//        guestServiceMain.showListGuestsAndTheirRoomsSortedBySurname();
-//        guestDaoStorage.saveGuest(new Guest(258345, "Sergey", "Sergov",1));
-//        guestDaoStorage.getAllGuests().forEach(System.out::println);
-//
         /*------------------------добавить доп сервисы---------------------------------*/
 //        additionalServiceDaoStorage.saveAdditionalService
 //                (new AdditionalService("Cleaning", 600));
-//        additionalServiceDaoStorage.saveAdditionalService
-//                (new AdditionalService("Food delivery", 400));
-//        additionalServiceDaoStorage.saveAdditionalService
-//                (new AdditionalService("Washing clothes", 100));
-//        additionalServiceDaoStorage.saveAdditionalService
-//                (new AdditionalService("Cable TV", 100));
-//        additionalServiceDaoStorage.saveAdditionalService
-//                (new AdditionalService("Safe", 100));
-//        additionalServiceDaoStorage.updateAdditionalService
-//                (new AdditionalService(2,"Animator",2300));
 
-
-//        bookingOrderDaoStorage.getAllBookingOrders().forEach(System.out::println);
-//        roomDaoStorage.getAllRooms().forEach(System.out::println);
-
-//        System.out.println(guestDaoStorage.getGuest(1));
-//        guestDaoStorage.getAllGuests().forEach(System.out::println);
         /* -------------------------создание ордера------------------------------*/
-//        BookingOrder bookingOrder2 = new BookingOrder(LocalDate.now(),
+//        BookingOrder bookingOrder = new BookingOrder(LocalDate.now(),
 //                LocalDate.of(2022, 01, 15),
 //                LocalDate.of(2022, 01, 20),
 //                3, OrderStatus.BOOKING);
-//        bookingOrderDaoStorage.saveBookingOrder(bookingOrder2);
+//        bookingOrderDaoStorage.saveBookingOrder(bookingOrder);
         /*------------------------добавить доп сервисы в ордер---------------------------------*/
 //        additionalServiceDaoStorage.setAdditionalServicesToOrder(3,2);
 //        additionalServiceDaoStorage.setAdditionalServicesToOrder(3,3);
@@ -87,22 +57,10 @@ public class Main {
 //        guestDaoStorage.saveGuest(new Guest(5465132, "Tana", "Opyt",3));
 //        guestDaoStorage.saveGuest(new Guest(2154888, "Gena", "Opiut",3));
 //        guestDaoStorage.saveGuest(new Guest(23215465, "Tana", "Klooit",3));
-        /*--------------------------------------------------------------------------*/
-//        bookingOrderDaoStorage.updateBookingOrder(bookingOrder1);
-
-//        BookingOrder order = bookingOrderDaoStorage.getBookingOrder(1);
-//        System.out.println(order);
-//        bookingOrderDaoStorage.deleteBookingOrder(order);
-
-//        Guest guest1 = new Guest
-//                (258345, "Sergey", "Sergov", 1);
-//        guestDaoStorage.saveGuest(guest1);
-
-//        adminController.createNewRoom(4, RoomType.STARS_3, 2, 3500);
-//        System.out.println(roomDaoStorage.getRoom(1));
-//        System.out.println();
-//        roomServiceMain.getHotelRoomsSortedByRoomPlaces().forEach(System.out::println);
-
+        /*----------------------поселить в номер-------------------------*/
+//        adminController.checkInOrder(2);
+//        adminController.checkOutOrder(2);//
+        /*------------------------создать удалить комнату---------------------------------*/
 //        Room room1 = new Room();
 //        room1.setRoomNumber(1);
 //        room1.setRoomType(RoomType.STARS_3);
@@ -110,26 +68,15 @@ public class Main {
 //        room1.setRoomPrice(6000);
 //        room1.setRoomStatus(RoomStatus.EMPTY);
 //        roomDaoStorage.saveRoom(room1);
-//
-//        Room room2 = new Room();
-//        room2.setRoomNumber(2);
-//        room2.setRoomType(RoomType.STARS_2);
-//        room2.setRoomPlaces(4);
-//        room2.setRoomPrice(2700);
-//        room2.setRoomStatus(RoomStatus.EMPTY);
-//        roomDaoStorage.saveRoom(room2);
-//
-//        Room room3 = new Room();
-//        room3.setRoomNumber(3);
-//        room3.setRoomType(RoomType.STARS_2);
-//        room3.setRoomPlaces(2);
-//        room3.setRoomPrice(2000);
-//        room3.setRoomStatus(RoomStatus.EMPTY);
-//        roomDaoStorage.saveRoom(room3);
-
 //        roomDaoStorage.deleteRoom(1);
-//        roomDaoStorage.deleteRoom(2);
+//      /*------------------------занятые свободные комнаты на дату---------------------------------*/
+//        roomServiceMain.getBusyRoomListOnDate
+//                (LocalDate.of(2022,01,17)).forEach(System.out::println);
+//        roomServiceMain.getEmptyRoomListOnDate
+//                (LocalDate.of(2022,01,17)).forEach(System.out::println);
 
+        /*------------------------создать удалить комнату---------------------------------*/
+//        System.out.println(guestDaoStorage.getNumberGuestsHotel());
 //        controller.createNewRoom(1, RoomType.STARS_3, 5, 6000);
 //        adminController.createNewRoom(2, 2, RoomType.STARS_2, 4, 2700);
 //        adminController.createNewRoom(3, 3, RoomType.STARS_2, 2, 2000);

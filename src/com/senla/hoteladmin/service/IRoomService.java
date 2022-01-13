@@ -20,28 +20,20 @@ public interface IRoomService {
     String createEmptyRoomSqlStr(String columnName);
 
     List<Room> getEmptyHotelRoomsSortedByRoomNumber() throws SQLException;
-//
+
     List<Room> getEmptyHotelRoomsSortedByRoomPlaces() throws SQLException;
 
     List<Room> getEmptyHotelRoomsSortedByRoomPrice() throws SQLException;
 
     List<Room> getEmptyHotelRoomsSortedByRoomType() throws SQLException;
 
-//    String getEmptyRoomListOnDateSqlQuery(String sql);
-
     List<Room> getBusyRoomListOnDate(LocalDate date) throws SQLException;
-//
+
     List<Room> getEmptyRoomListOnDate(LocalDate date) throws SQLException;
 
-//    void setNewRoom(Room room);
+    void setRoomChekInStatus(Integer roomNumber) throws SQLException;
 
-//    void deleteRoom(Room room);
-//
-//    Room getRoomByNumber(Integer roomNumber);
-//
-//    List<Room> getRoomList();
-//
-//    void setNewPriceRoom(Integer roomNumber, Integer priceRoom);
-//
-//    Room showRoomDetails(Integer roomNumber);
+    void setRoomEmptyStatus(Integer roomNumber) throws SQLException;
+
+    void setRoomNewPrice (Integer roomNumber, Integer newPrice) throws SQLException;
 }

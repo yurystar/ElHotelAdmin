@@ -156,49 +156,22 @@ public class BookingOrderDaoImpl implements IBookingOrderRepo {
             e.printStackTrace();
         }
     }
-}
 
-//    @Override
-//    public List<BookingOrder> getLastThreeGuestsRoom(Integer roomNumber) {
-//        return bookingOrders.stream()
-//                .filter(bookingOrder -> bookingOrder.getOrderedRoom().getRoomNumber().equals(roomNumber))
-//                .filter(order -> order.getOrderStatus().equals(OrderStatus.CHECK_OUT))
-//                .filter(bookingOrder -> bookingOrder.getOrderCheckInDate().
-//                        isBefore(LocalDate.now().plusDays(1)))
-//                .sorted((o1, o2) -> o2.getOrderCheckInDate().compareTo(o1.getOrderCheckInDate()))
-//                .limit(3)
-//                .collect(Collectors.toList());
-//    }
-//
-//    @Override
-//    public List<BookingOrder> getListGuestsAndTheirRoomsSortedByRoom() {
-//        return bookingOrders.stream()
-//                .filter(bookingOrder -> bookingOrder.getOrderStatus().equals(OrderStatus.CHECK_IN))
-//                .sorted(Comparator.comparing(o -> o.getOrderedRoom().getRoomNumber()))
-//                .collect(Collectors.toList());
-//    }
-//
-//
-//    @Override
-//    public List<BookingOrder> getListGuestsAndTheirRoomsSortedByCheckOutDays() {
-//        return bookingOrders.stream()
-//                .filter(bookingOrder -> bookingOrder.getOrderStatus().equals(OrderStatus.CHECK_IN))
-//                .sorted(Comparator.comparing(BookingOrder::getOrderCheckOutDate))
-//                .collect(Collectors.toList());
-//    }
-//
-//    @Override
-//    public List<AdditionalService> getListAdditionalServiceOfGuestSortedByPrice(Integer guestID) {
-//        List<AdditionalService> list = new ArrayList<>();
-//        for (BookingOrder order : bookingOrders) {
-//            for (Guest guest : order.getOrderedGuests()) {
-//                if (guest.getGuestID().equals(guestID)) {
-//                    list = order.getOrderedAdServ().stream()
-//                            .sorted(Comparator.comparing(AdditionalService::getServicePrice))
-//                            .collect(Collectors.toList());
-//                }
-//            }
-//        }
-//        return list;
-//    }
-//}
+    @Override
+    public void setBookingOrderChekInStatus(Integer orderID) throws SQLException {
+        BookingOrder bookingOrder = getBookingOrder(orderID);
+        if (bookingOrder != null) {
+            bookingOrder.setOrderStatus(OrderStatus.CHECK_IN);
+        }
+        updateBookingOrder(bookingOrder);
+    }
+
+    @Override
+    public void setBookingOrderChekOutStatus(Integer orderID) throws SQLException {
+        BookingOrder bookingOrder = getBookingOrder(orderID);
+        if (bookingOrder != null) {
+            bookingOrder.setOrderStatus(OrderStatus.CHECK_OUT);
+        }
+        updateBookingOrder(bookingOrder);
+    }
+}

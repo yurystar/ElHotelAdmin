@@ -6,6 +6,7 @@ import com.senla.hoteladmin.entity.BookingOrder;
 import com.senla.hoteladmin.util.DbConnect;
 import com.senla.hoteladmin.util.IDbConnect;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class BookingOrderService  implements IBookingOrderService {
@@ -16,11 +17,26 @@ public class BookingOrderService  implements IBookingOrderService {
     }
 
     @Override
-    public void saveNewBookingOrder(BookingOrder order) {
-
+    public void setBookingOrderChekInStatus(Integer orderID) throws SQLException {
+        bookingOrderRepo.setBookingOrderChekInStatus(orderID);
     }
 
-    //    public BookingOrderService(IBookingOrderRepo bookingOrderRepo) {
+    @Override
+    public BookingOrder getBookingOrder(Integer orderID) throws SQLException {
+        return bookingOrderRepo.getBookingOrder(orderID);
+    }
+
+    @Override
+    public void setBookingOrderChekOutStatus(Integer orderID) throws SQLException {
+        bookingOrderRepo.setBookingOrderChekOutStatus(orderID);
+    }
+
+//    @Override
+//    public void saveNewBookingOrder(BookingOrder order) {
+//
+//    }
+
+//    public BookingOrderService(IBookingOrderRepo bookingOrderRepo) {
 //        this.bookingOrderRepo = bookingOrderRepo;
 //    }
 //

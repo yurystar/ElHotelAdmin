@@ -19,9 +19,7 @@ public interface IBookingOrderRepo {
 
     void deleteBookingOrder(BookingOrder bookingOrder) throws SQLException;
 
-//    List<BookingOrder> getLastThreeGuestsRoom(Integer roomNumber);
-//
+    void setBookingOrderChekInStatus(Integer orderID) throws SQLException;
 
-//
-//    List<AdditionalService> getListAdditionalServiceOfGuestSortedByPrice(Integer guestID);
+    void setBookingOrderChekOutStatus(Integer orderID) throws SQLException;
 }

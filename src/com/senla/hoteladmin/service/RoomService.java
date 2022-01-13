@@ -2,13 +2,10 @@ package com.senla.hoteladmin.service;
 
 import com.senla.hoteladmin.dao.IRoomRepo;
 import com.senla.hoteladmin.entity.Room;
-import com.senla.hoteladmin.entity.RoomStatus;
-import com.senla.hoteladmin.entity.RoomType;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RoomService implements IRoomService {
@@ -86,39 +83,19 @@ public class RoomService implements IRoomService {
         EmptyHotelRoomsListOnDate.removeAll(getBusyRoomListOnDate(date));
         return EmptyHotelRoomsListOnDate;
     }
+
+    @Override
+    public void setRoomChekInStatus(Integer roomNumber) throws SQLException {
+        roomRepo.setRoomChekInStatus(roomNumber);
+    }
+
+    @Override
+    public void setRoomEmptyStatus(Integer roomNumber) throws SQLException {
+        roomRepo.setRoomEmptyStatus(roomNumber);
+    }
+
+    @Override
+    public void setRoomNewPrice(Integer roomNumber, Integer newPrice) throws SQLException {
+        roomRepo.setRoomNewPrice(roomNumber, newPrice);
+    }
 }
-
-//
-//    @Override
-//    public void setNewRoom(Room room) {
-//        roomRepo.save(room);
-//    }
-//
-//    @Override
-//    public void deleteRoom(Room room) {
-//        roomRepo.delete(room);
-//    }
-//
-//    @Override
-//    public Room getRoomByNumber(Integer roomNumber) {
-//        return roomRepo.getAll().stream()
-//                .filter(room -> room.getRoomNumber().equals(roomNumber))
-//                .findFirst()
-//                .orElse(null);
-//    }
-//
-//    @Override
-//    public List<Room> getRoomList() {
-//        return roomRepo.getAll();
-//    }
-//
-//    @Override
-//    public void setNewPriceRoom(Integer roomNumber, Integer priceRoom) {
-//        roomRepo.setNewPriceRoom(roomNumber, priceRoom);
-//    }
-//
-//    @Override
-//    public Room showRoomDetails(Integer roomNumber) {
-//        return roomRepo.showRoomDetails(roomNumber);
-//    }
-

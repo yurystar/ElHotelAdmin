@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IRoomRepo {
-    Optional<Room> getRoom(Integer roomNum) throws SQLException;
+    Room getRoom(Integer roomNum) throws SQLException;
 
     List<Room> getAllRooms(String sql) throws SQLException;
 
@@ -19,22 +19,11 @@ public interface IRoomRepo {
 
     Integer getNumberEmptyHotelRooms() throws SQLException;
 
-//    List<Room> getHotelRoomsSortedByRoomPlaces();
-//
-//    List<Room> getHotelRoomsSortedByRoomPrice();
-//
-//    List<Room> getHotelRoomsSortedByRoomType();
-//
-//    List<Room> getEmptyHotelRoomsSortedByRoomPlaces();
-//
-//    List<Room> getEmptyHotelRoomsSortedByRoomPrice();
-//
-//    List<Room> getEmptyHotelRoomsSortedByRoomType();
-//
-//    long getNumberEmptyHotelRooms();
-//
-//    void setNewPriceRoom(Integer roomNumber, Integer priceRoom);
-//
-//    Room showRoomDetails(Integer roomNumber);
+    void setRoomChekInStatus(Integer roomNumber) throws SQLException;
 
+    void setRoomEmptyStatus(Integer roomNumber) throws SQLException;
+
+    void setRoomStatusOnRepair(Integer roomNumber) throws SQLException;
+
+    void setRoomNewPrice (Integer roomNumber, Integer newPrice) throws SQLException;
 }

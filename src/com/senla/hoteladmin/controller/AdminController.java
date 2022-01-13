@@ -1,11 +1,5 @@
 package com.senla.hoteladmin.controller;
 
-import com.senla.hoteladmin.dao.IAdditionalServiceRepo;
-import com.senla.hoteladmin.dao.IBookingOrderRepo;
-import com.senla.hoteladmin.dao.IGuestRepo;
-import com.senla.hoteladmin.dao.IRoomRepo;
-import com.senla.hoteladmin.entity.Room;
-import com.senla.hoteladmin.entity.RoomType;
 import com.senla.hoteladmin.service.IAdditionalServiceService;
 import com.senla.hoteladmin.service.IBookingOrderService;
 import com.senla.hoteladmin.service.IGuestService;
@@ -15,7 +9,7 @@ import java.sql.SQLException;
 
 public class AdminController {
 
-        private final IAdditionalServiceService additionalServiceService;
+    private final IAdditionalServiceService additionalServiceService;
     private final IBookingOrderService bookingOrderService;
     private final IGuestService guestService;
     private final IRoomService roomService;
@@ -27,6 +21,16 @@ public class AdminController {
         this.bookingOrderService = bookingOrderService;
         this.guestService = guestService;
         this.roomService = roomService;
+    }
+
+    public void checkInOrder(Integer orderID) throws SQLException {
+        bookingOrderService.setBookingOrderChekInStatus(orderID);
+        roomService.setRoomChekInStatus(bookingOrderService.getBookingOrder(orderID).getOrderedRoom());
+    }
+
+    public void checkOutOrder(Integer orderID) throws SQLException {
+        bookingOrderService.setBookingOrderChekOutStatus(orderID);
+        roomService.setRoomEmptyStatus(bookingOrderService.getBookingOrder(orderID).getOrderedRoom());
     }
 
     //
@@ -128,24 +132,7 @@ public class AdminController {
 //        return EmptyHotelRoomsListOnDate;
 //    }
 //
-//    public void checkInOrder(Integer orderID) {
-//        for (BookingOrder order : bookingOrderService.getListBookingOrders()) {
-//            if (order.getOrderID().equals(orderID)) {
-//                /* Можно добавить проверку даты начала брони на текущую дату
-//                if (order.getOrderCheckInDate().isEqual(LocalDate.now())) { */
-//                order.setOrderStatus(OrderStatus.CHECK_IN);
-//                for (Guest guest : order.getOrderedGuests()) {
-//                    guestService.addGuestInStorage(guest);
-//                }
-//                for (Room room : roomService.getRoomList()) {
-//                    if (room.getRoomNumber().equals(order.getOrderedRoom().getRoomNumber())) {
-//                        room.setRoomStatus(RoomStatus.BUSY);
-//                    }
-//                }
-////                }
-//            }
-//        }
-//    }
+
 //
 //    public void checkOutOrder(Integer orderID) {
 //        for (BookingOrder order : bookingOrderService.getListBookingOrders()) {
