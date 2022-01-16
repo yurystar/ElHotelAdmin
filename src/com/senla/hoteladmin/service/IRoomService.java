@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IRoomService {
-    String createRoomSqlStr(String columnName);
+    Room getRoom(Integer roomNum) throws SQLException;
 
     List<Room> getHotelRoomsSortedByRoomNumber() throws SQLException;
 
@@ -16,8 +16,6 @@ public interface IRoomService {
     List<Room> getHotelRoomsSortedByRoomPrice() throws SQLException;
 
     List<Room> getHotelRoomsSortedByRoomType() throws SQLException;
-
-    String createEmptyRoomSqlStr(String columnName);
 
     List<Room> getEmptyHotelRoomsSortedByRoomNumber() throws SQLException;
 

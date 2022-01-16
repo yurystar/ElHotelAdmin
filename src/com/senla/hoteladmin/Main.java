@@ -57,9 +57,12 @@ public class Main {
 //        guestDaoStorage.saveGuest(new Guest(5465132, "Tana", "Opyt",3));
 //        guestDaoStorage.saveGuest(new Guest(2154888, "Gena", "Opiut",3));
 //        guestDaoStorage.saveGuest(new Guest(23215465, "Tana", "Klooit",3));
-        /*----------------------поселить в номер-------------------------*/
+        /*----------------------поселить | выселить из в номер-------------------------*/
 //        adminController.checkInOrder(2);
-//        adminController.checkOutOrder(2);//
+//        adminController.checkOutOrder(2);
+        /*------------------------выставить счет за проживание---------------------------------*/
+//        System.out.printf("Стоимость проживания %d.", adminController.getOrderPaymentAmount(1));
+
         /*------------------------создать удалить комнату---------------------------------*/
 //        Room room1 = new Room();
 //        room1.setRoomNumber(1);
@@ -69,7 +72,7 @@ public class Main {
 //        room1.setRoomStatus(RoomStatus.EMPTY);
 //        roomDaoStorage.saveRoom(room1);
 //        roomDaoStorage.deleteRoom(1);
-//      /*------------------------занятые свободные комнаты на дату---------------------------------*/
+//      /*------------------------занятые\ свободные комнаты на дату---------------------------------*/
 //        roomServiceMain.getBusyRoomListOnDate
 //                (LocalDate.of(2022,01,17)).forEach(System.out::println);
 //        roomServiceMain.getEmptyRoomListOnDate

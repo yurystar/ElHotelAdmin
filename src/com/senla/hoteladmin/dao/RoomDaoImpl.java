@@ -7,6 +7,8 @@ import com.senla.hoteladmin.util.DbConnect;
 import com.senla.hoteladmin.util.IDbConnect;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -124,6 +126,75 @@ public class RoomDaoImpl implements IRoomRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String createRoomSqlStr(String columnName) {
+        return "SELECT roomNumber, roomType, roomPlaces, roomPrice, roomStatus FROM Room " +
+                "ORDER BY " + columnName;
+    }
+
+    @Override
+    public List<Room> getHotelRoomsSortedByRoomNumber() throws SQLException {
+        return getAllRooms(createRoomSqlStr("roomNumber"));
+    }
+
+    @Override
+    public List<Room> getHotelRoomsSortedByRoomPlaces() throws SQLException {
+        return getAllRooms(createRoomSqlStr("roomPlaces"));
+    }
+
+    @Override
+    public List<Room> getHotelRoomsSortedByRoomPrice() throws SQLException {
+        return getAllRooms(createRoomSqlStr("roomPrice"));
+    }
+
+    @Override
+    public List<Room> getHotelRoomsSortedByRoomType() throws SQLException {
+        return getAllRooms(createRoomSqlStr("roomType"));
+    }
+
+    @Override
+    public String createEmptyRoomSqlStr(String columnName) {
+        return "SELECT roomNumber, roomType, roomPlaces, roomPrice, roomStatus FROM Room " +
+                "WHERE roomStatus = \"EMPTY\" ORDER BY " + columnName;
+    }
+
+    @Override
+    public List<Room> getEmptyHotelRoomsSortedByRoomNumber() throws SQLException {
+        return getAllRooms(createEmptyRoomSqlStr("roomNumber"));
+    }
+
+    @Override
+    public List<Room> getEmptyHotelRoomsSortedByRoomPlaces() throws SQLException {
+        return getAllRooms(createEmptyRoomSqlStr("roomPlaces"));
+    }
+
+    @Override
+    public List<Room> getEmptyHotelRoomsSortedByRoomPrice() throws SQLException {
+        return getAllRooms(createEmptyRoomSqlStr("roomPrice"));
+    }
+
+    @Override
+    public List<Room> getEmptyHotelRoomsSortedByRoomType() throws SQLException {
+        return getAllRooms(createEmptyRoomSqlStr("roomType"));
+    }
+
+    @Override
+    public List<Room> getBusyRoomListOnDate(LocalDate date) throws SQLException {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String searchDate = dateTimeFormatter.format(date);
+        return getAllRooms("select b.roomNumber, b.roomType, b.roomPlaces, b.roomPrice, b.roomStatus \n" +
+                "from BookingOrder as a left join Room as b on a.orderedRoom = b.roomNumber \n" +
+                "where DATE (a.orderCheckInDate) <= '" + searchDate +
+                "' and DATE (a.orderCheckOutDate) > '" + searchDate + "'");
+    }
+
+    @Override
+    public List<Room> getEmptyRoomListOnDate(LocalDate date) throws SQLException {
+        List<Room> EmptyHotelRoomsListOnDate = getHotelRoomsSortedByRoomNumber();
+        EmptyHotelRoomsListOnDate.removeAll(getBusyRoomListOnDate(date));
+        return EmptyHotelRoomsListOnDate;
     }
 
     @Override

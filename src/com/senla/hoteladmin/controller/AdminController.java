@@ -1,11 +1,13 @@
 package com.senla.hoteladmin.controller;
 
+import com.senla.hoteladmin.entity.AdditionalService;
 import com.senla.hoteladmin.service.IAdditionalServiceService;
 import com.senla.hoteladmin.service.IBookingOrderService;
 import com.senla.hoteladmin.service.IGuestService;
 import com.senla.hoteladmin.service.IRoomService;
 
 import java.sql.SQLException;
+import java.time.temporal.ChronoUnit;
 
 public class AdminController {
 
@@ -31,6 +33,18 @@ public class AdminController {
     public void checkOutOrder(Integer orderID) throws SQLException {
         bookingOrderService.setBookingOrderChekOutStatus(orderID);
         roomService.setRoomEmptyStatus(bookingOrderService.getBookingOrder(orderID).getOrderedRoom());
+    }
+
+    public Long getOrderPaymentAmount (Integer orderID) throws SQLException {
+        Integer roomNum = bookingOrderService.getBookingOrder(orderID).getOrderedRoom();
+        Integer roomPrice = roomService.getRoom(roomNum).getRoomPrice();
+        Integer addServPrice = additionalServiceService.getListAdditionalServicesFromOrder(orderID).stream()
+                .mapToInt(AdditionalService::getServicePrice)
+                .sum();
+        long numDays = bookingOrderService.getBookingOrder(orderID).getOrderCheckOutDate().
+                                until(bookingOrderService.getBookingOrder(orderID).
+                                        getOrderCheckInDate(), ChronoUnit.DAYS);
+        return (roomPrice + addServPrice) * numDays;
     }
 
     //
