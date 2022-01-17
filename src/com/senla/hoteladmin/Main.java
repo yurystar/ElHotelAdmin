@@ -3,18 +3,11 @@ package com.senla.hoteladmin;
 import com.senla.hoteladmin.controller.AdminController;
 import com.senla.hoteladmin.dao.*;
 //import com.senla.hoteladmin.controller.AdminController;
-import com.senla.hoteladmin.entity.*;
 import com.senla.hoteladmin.service.*;
 import com.senla.hoteladmin.util.DbConnect;
 import com.senla.hoteladmin.util.IDbConnect;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class Main {
 
@@ -70,6 +63,7 @@ public class Main {
 //        room1.setRoomPlaces(5);
 //        room1.setRoomPrice(6000);
 //        room1.setRoomStatus(RoomStatus.EMPTY);
+
 //        roomDaoStorage.saveRoom(room1);
 //        roomDaoStorage.deleteRoom(1);
 //      /*------------------------занятые\ свободные комнаты на дату---------------------------------*/

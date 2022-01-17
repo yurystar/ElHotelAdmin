@@ -1,6 +1,7 @@
 package com.senla.hoteladmin.controller;
 
 import com.senla.hoteladmin.entity.AdditionalService;
+import com.senla.hoteladmin.entity.BookingOrder;
 import com.senla.hoteladmin.service.IAdditionalServiceService;
 import com.senla.hoteladmin.service.IBookingOrderService;
 import com.senla.hoteladmin.service.IGuestService;
@@ -8,6 +9,7 @@ import com.senla.hoteladmin.service.IRoomService;
 
 import java.sql.SQLException;
 import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 
 public class AdminController {
 
@@ -35,19 +37,28 @@ public class AdminController {
         roomService.setRoomEmptyStatus(bookingOrderService.getBookingOrder(orderID).getOrderedRoom());
     }
 
-    public Long getOrderPaymentAmount (Integer orderID) throws SQLException {
+    public Long getOrderPaymentAmount(Integer orderID) throws SQLException {
         Integer roomNum = bookingOrderService.getBookingOrder(orderID).getOrderedRoom();
         Integer roomPrice = roomService.getRoom(roomNum).getRoomPrice();
         Integer addServPrice = additionalServiceService.getListAdditionalServicesFromOrder(orderID).stream()
                 .mapToInt(AdditionalService::getServicePrice)
                 .sum();
         long numDays = bookingOrderService.getBookingOrder(orderID).getOrderCheckOutDate().
-                                until(bookingOrderService.getBookingOrder(orderID).
-                                        getOrderCheckInDate(), ChronoUnit.DAYS);
+                until(bookingOrderService.getBookingOrder(orderID).
+                        getOrderCheckInDate(), ChronoUnit.DAYS);
         return (roomPrice + addServPrice) * numDays;
     }
 
-    //
+    public void showListAddServOfGuestSortedByPrice(Integer guestID) throws SQLException {
+        System.out.println("Список дополнительных сервисов клиента - ");
+        additionalServiceService
+                .getListAdditionalServicesFromOrder(guestService.getIDOrderOfGuest(guestID))
+                .stream()
+                .sorted(Comparator.comparing(AdditionalService::getServicePrice))
+                .forEach(System.out::println);
+    }
+}
+
 //    public AdminController(IAdditionalServiceService additionalServiceService,
 //                           IBookingOrderService bookingOrderService,
 //                           IGuestService guestService,
@@ -221,4 +232,4 @@ public class AdminController {
 //    List<BookingOrder> getListBookingOrders() {
 //        return bookingOrderService.getListBookingOrders();
 //    }
-}
+

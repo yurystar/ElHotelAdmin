@@ -19,7 +19,7 @@ public class GuestDaoImpl implements IGuestRepo {
     }
 
     @Override
-    public Optional<Guest> getGuest(Integer guestID) throws SQLException {
+    public Guest getGuest(Integer guestID) throws SQLException {
         String sql = "SELECT guestID, guestPassport, guestName, guestSurname, orderID " +
                 "FROM Guest WHERE guestID=?";
 
@@ -41,7 +41,7 @@ public class GuestDaoImpl implements IGuestRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Optional.ofNullable(guest);
+        return guest;
     }
 
     @Override
@@ -198,44 +198,9 @@ public class GuestDaoImpl implements IGuestRepo {
         }
         return count;
     }
+
+    @Override
+    public Integer getIDOrderOfGuest(Integer guestID) throws SQLException {
+        return getGuest(guestID).getOrderID();
+    }
 }
-//    private final List<Guest> guests = new ArrayList<>();
-//
-//    public GuestDaoImpl() {
-//        super();
-//    }
-//
-//    @Override
-//    public Optional<Guest> get(Integer guestID) {
-//        return Optional.ofNullable(guests.get(guestID));
-//    }
-//
-//    @Override
-//    public List<Guest> getAll() {
-//        return guests;
-//    }
-//
-//    @Override
-//    public void save(Guest guest) {
-//        guests.add(guest);
-//    }
-//
-//    @Override
-//    public void update(Guest guest) {
-//        if (!guests.contains(guest)) {
-//            guests.add(guest);
-//        } else {
-//            System.out.println("Such an object already exists!");
-//        }
-//    }
-//
-//    @Override
-//    public void delete(Guest guest) {
-//        guests.remove(guest);
-//    }
-//
-//    @Override
-//    public Integer getNumberOfGuests() {
-//        return guests.size();
-//    }
-//}

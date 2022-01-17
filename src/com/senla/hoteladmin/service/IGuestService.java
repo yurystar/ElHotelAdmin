@@ -1,14 +1,13 @@
 package com.senla.hoteladmin.service;
 
-import com.senla.hoteladmin.entity.Guest;
-
-import java.util.List;
+import java.sql.SQLException;
 
 public interface IGuestService {
+    void showListGuestsAndTheirRoomsSortedBySurname();
 
+    void showListGuestsAndTheirRoomsSortedByCheckOutDate();
 
-//
-//    void addGuestInStorage(Guest guest);
-//
-//    void removeGuestFromStorage(Guest guest);
+    Integer getNumberGuestsHotel();
+
+    Integer getIDOrderOfGuest(Integer guestID) throws SQLException;
 }
