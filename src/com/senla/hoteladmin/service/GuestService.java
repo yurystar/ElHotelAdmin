@@ -30,4 +30,9 @@ public class GuestService implements IGuestService {
     public Integer getIDOrderOfGuest(Integer guestID) throws SQLException {
         return guestRepo.getIDOrderOfGuest(guestID);
     }
+
+    @Override
+    public void getLastThreeGuestsRoomAndDatesStay(Integer roomNum) {
+        guestRepo.getLastThreeGuestsRoomAndDatesStay(roomNum);
+    }
 }

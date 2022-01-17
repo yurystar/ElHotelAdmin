@@ -10,4 +10,6 @@ public interface IGuestService {
     Integer getNumberGuestsHotel();
 
     Integer getIDOrderOfGuest(Integer guestID) throws SQLException;
+
+    void getLastThreeGuestsRoomAndDatesStay(Integer roomNum);
 }

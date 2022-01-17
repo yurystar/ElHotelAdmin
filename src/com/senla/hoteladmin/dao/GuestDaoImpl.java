@@ -203,4 +203,31 @@ public class GuestDaoImpl implements IGuestRepo {
     public Integer getIDOrderOfGuest(Integer guestID) throws SQLException {
         return getGuest(guestID).getOrderID();
     }
+
+    public void getLastThreeGuestsRoomAndDatesStay(Integer roomNum) {
+        String sql = "select guestID, guestName, guestSurname, orderCheckInDate, orderCheckOutDate, orderedRoom \n" +
+                "from Guest inner join BookingOrder on Guest.orderID = BookingOrder.orderID\n" +
+                "where orderedRoom=? and BookingOrder.orderStatus = 'BOOKING' order by orderCheckOutDate desc limit 3";
+
+        try (Connection connection = dbConnect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, roomNum);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                System.out.printf("%d ", resultSet.getInt("guestID"));
+                System.out.printf("Name - %s, ", resultSet.getString("guestName"));
+                System.out.printf("Surname - %s, ", resultSet.getString("guestSurname"));
+                System.out.printf("Date check-in - %s, ", resultSet.getString("orderCheckInDate"));
+                System.out.printf("Date check-out - %s, ", resultSet.getString("orderCheckOutDate"));
+                System.out.printf("Room number - %s. \n", resultSet.getInt("orderedRoom"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
